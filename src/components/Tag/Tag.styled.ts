@@ -10,6 +10,7 @@ export const TagContainer = styled.div.attrs({
   suppressContentEditableWarning: true,
 })<TagContainerProps>`
   position: absolute;
+  max-width: 150px;
   padding: 2px 4px;
   left: ${({ x }) => x}%;
   top: ${({ y }) => y}%;
