@@ -7,7 +7,7 @@ interface TagProps extends ITag {
   onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export const Tag: React.FC<TagProps> = (props) => {
+export const Tag: React.FC<TagProps> = React.memo((props) => {
   const { id, title, x, y, setTags, onClick } = props;
 
   const onBlurHandler = (event: React.FocusEvent<HTMLDivElement>) => {
@@ -21,4 +21,4 @@ export const Tag: React.FC<TagProps> = (props) => {
       {title}
     </TagContainer>
   );
-};
+});

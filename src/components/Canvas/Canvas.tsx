@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { Tag } from '../Tag/Tag';
 import { CanvasContainer, CanvasImage, CanvasImageWrapper, CanvasClose } from './Canvas.styled';
@@ -18,10 +18,10 @@ export interface ITag {
 export const Canvas: React.FC<CanvasProps> = (props) => {
   const { image, setImage } = props;
   const [tags, setTags] = useState<ITag[]>([]);
-  const [isEditing, setEditing] = useState<boolean>(false);
+  const isEditing = useRef<boolean>(false);
 
-  const onClickHandler = (event: React.MouseEvent<HTMLImageElement>) => {
-    if (isEditing) return;
+  const onClickHandler = useCallback((event: React.MouseEvent<HTMLImageElement>) => {
+    if (isEditing.current) return;
 
     const { top, left, width, height } = event.currentTarget.getBoundingClientRect();
     const { pageX, pageY } = event;
@@ -37,16 +37,16 @@ export const Canvas: React.FC<CanvasProps> = (props) => {
         y,
       },
     ]);
-  };
+  }, []);
 
-  const onClickTagHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+  const onClickTagHandler = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
 
-    if (!isEditing) {
-      setEditing(true);
-      window.addEventListener('click', () => setEditing(false), { once: true });
+    if (!isEditing.current) {
+      isEditing.current = true;
+      window.addEventListener('click', () => (isEditing.current = false), { once: true });
     }
-  };
+  }, []);
 
   return (
     <CanvasContainer>
