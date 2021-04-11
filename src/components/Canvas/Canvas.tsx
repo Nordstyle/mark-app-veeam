@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { Tag } from '../Tag/Tag';
-import { CanvasContainer, CanvasImage, CanvasImageWrapper } from './Canvas.styled';
+import { CanvasContainer, CanvasImage, CanvasImageWrapper, CanvasClose } from './Canvas.styled';
 
 interface CanvasProps {
   image: string;
+  setImage: React.Dispatch<React.SetStateAction<Nullable<string>>>;
 }
 
 export interface ITag {
@@ -15,7 +16,7 @@ export interface ITag {
 }
 
 export const Canvas: React.FC<CanvasProps> = (props) => {
-  const { image } = props;
+  const { image, setImage } = props;
   const [tags, setTags] = useState<ITag[]>([]);
   const [isEditing, setEditing] = useState<boolean>(false);
 
@@ -49,6 +50,7 @@ export const Canvas: React.FC<CanvasProps> = (props) => {
 
   return (
     <CanvasContainer>
+      <CanvasClose onClick={() => setImage(null)}>&times;</CanvasClose>
       <CanvasImageWrapper>
         <CanvasImage src={image} alt="CanvasImage" onClick={onClickHandler} />
         {tags.map((item) => (

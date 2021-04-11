@@ -11,5 +11,5 @@ const Container = styled.div`
 export const App = () => {
   const [image, setImage] = useState<Nullable<string>>(null);
 
-  return <Container>{image ? <Canvas image={image} /> : <Button setImage={setImage} />}</Container>;
+  return <Container>{image ? <Canvas image={image} setImage={setImage} /> : <Button setImage={setImage} />}</Container>;
 };
