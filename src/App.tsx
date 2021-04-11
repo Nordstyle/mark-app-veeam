@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Button } from './components/Button/Button';
+import { Canvas } from './components/Canvas/Canvas';
 
 const Container = styled.div`
-  max-width: 100vh;
-  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const App = () => {
-  return <Container>hello</Container>;
+  const [image, setImage] = useState<string | null>(null);
+
+  return <Container>{image ? <Canvas image={image} /> : <Button setImage={setImage} />}</Container>;
 };
