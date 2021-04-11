@@ -13,7 +13,6 @@
     "url": "git+https://github.com/Nordstyle/mark-app-veeam.git"
   },
   "dependencies": {
-    "@types/uuid": "^8.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "styled-components": "^5.2.3",
@@ -31,6 +30,7 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/styled-components": "^5.1.9",
+    "@types/uuid": "^8.3.0",
     "@types/webpack": "5.28.0",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
