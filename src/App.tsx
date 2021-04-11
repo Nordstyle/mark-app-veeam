@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 export const App = () => {
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<Nullable<string>>(null);
 
   return <Container>{image ? <Canvas image={image} /> : <Button setImage={setImage} />}</Container>;
 };
