@@ -6,7 +6,7 @@ interface TagProps extends ITag {
   changeTag: (id: string, label: string) => void;
 }
 
-export const Tag: React.FC<TagProps> = (props) => {
+export const Tag: React.FC<TagProps> = React.memo((props) => {
   const { x, y, title, id, changeTag } = props;
   const [shouldEdit, setEdit] = useState<boolean>(false);
 
@@ -32,4 +32,4 @@ export const Tag: React.FC<TagProps> = (props) => {
       <TagBackdrop onClick={handleClick} shouldEdit={shouldEdit} />
     </TagWrapper>
   );
-};
+});
