@@ -12,7 +12,7 @@ export const FilePicker: React.FC<FilePickerProps> = (props) => {
     e.preventDefault();
   };
 
-  const setDataUTI = (file: File) => {
+  const setDataURL = (file: File) => {
     const reader = new FileReader();
     reader.onload = () => onFileSelect(reader.result as string);
     reader.readAsDataURL(file);
@@ -22,12 +22,12 @@ export const FilePicker: React.FC<FilePickerProps> = (props) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     if (!file.type.startsWith('image/')) return;
-    setDataUTI(file);
+    setDataURL(file);
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0];
-    setDataUTI(file);
+    setDataURL(file);
   };
 
   return (
