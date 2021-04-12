@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { TagWrapper, TagText, TagBackdrop } from './Tag.styled';
 import { ITag } from '../Canvas/Canvas';
-import { TagContainer } from './Tag.styled';
 
 interface TagProps extends ITag {
-  setTags: React.Dispatch<React.SetStateAction<ITag[]>>;
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+  changeTag: (id: string, label: string) => void;
 }
 
-export const Tag: React.FC<TagProps> = React.memo((props) => {
-  const { id, title, x, y, setTags, onClick } = props;
+export const Tag: React.FC<TagProps> = (props) => {
+  const { x, y, title, id, changeTag } = props;
+  const [shouldEdit, setEdit] = useState<boolean>(false);
 
-  const onBlurHandler = (event: React.FocusEvent<HTMLDivElement>) => {
-    const newTitle = event.currentTarget.textContent!;
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    if (e.target === e.currentTarget) setEdit(false);
+  };
 
-    setTags((items) => items.map((item) => (item.id !== id ? item : { ...item, title: newTitle })));
+  const handleEdit = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    setEdit(true);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
+    changeTag(id, e.currentTarget.textContent!);
   };
 
   return (
-    <TagContainer x={x} y={y} onBlur={onBlurHandler} onClick={onClick}>
-      {title}
-    </TagContainer>
+    <TagWrapper x={x} y={y}>
+      <TagText onBlur={handleBlur} onClick={handleEdit}>
+        {title}
+      </TagText>
+      <TagBackdrop onClick={handleClick} shouldEdit={shouldEdit} />
+    </TagWrapper>
   );
-});
+};
