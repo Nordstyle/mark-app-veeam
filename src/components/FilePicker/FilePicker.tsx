@@ -1,11 +1,11 @@
 import React from 'react';
 import { DropZone, Text, Wrapper } from './FilePicker.styled';
 
-interface Props {
-  onFileSelect: (source: string) => void;
+interface FilePickerProps {
+  onFileSelect: React.Dispatch<React.SetStateAction<Nullable<string>>>;
 }
 
-export const FilePicker: React.FC<Props> = (props) => {
+export const FilePicker: React.FC<FilePickerProps> = (props) => {
   const { onFileSelect } = props;
 
   const dragOverHandler = (e: React.DragEvent<HTMLElement>) => {
