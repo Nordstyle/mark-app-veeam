@@ -1,20 +1,22 @@
 import styled from 'styled-components';
 
 export const CanvasContainer = styled.div`
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const CanvasImageWrapper = styled.span`
+  max-width: 100%;
+  max-height: 100%;
   position: relative;
 `;
 
 export const CanvasImage = styled.img`
-  max-width: 100vw;
-  max-height: 100vh;
-  user-select: none;
+  max-width: 100%;
+  max-height: 100%;
 `;
 
 export const CanvasClose = styled.div`
